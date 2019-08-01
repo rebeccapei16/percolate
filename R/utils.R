@@ -15,11 +15,49 @@ generate_board_mat <- function(n = 5, p = 0.25){
   assert_that (is.numeric(p), msg = "\np must be numeric")
   assert_that (length(p) == 1, msg = "\np must be a numeric vector of length 1")
   assert_that (p >= 0 && p <= 1, msg = "\np must be between 0 and 1")
-  
+
   return(matrix(sample(c(rep(1, n^2 - floor(p*n^2)),
                          rep(0, floor(p*n^2)))),
                 ncol = n))
 }
 
-generate_board_mat()
-generate_board_mat(n = 8, p = 0.75)
+#' is_valid
+#'
+#' @param mat a matrix
+#'
+#' @return TRUE of throw an error
+#' @export
+#'
+#' @examples is_valid(my_matrix)
+is_valid <- function(mat) {
+  assert_that(is.matrix(mat), msg = "\nmat must be a matrix")
+  assert_that(is.numeric(mat), msg = "\nmat must be numeric")
+  assert_that(ncol(mat) == nrow(mat), msg = "\n mat must be a square matrix")
+  assert_that(all(mat %in% c(0, 1, 2)), msg = "\n mat only contains value 0, 1, 2")
+  TRUE
+}
+
+#' board
+#'
+#' @param mat matrix into a board
+#' @param n if there is no matrix, n by n matrix
+#' @param p if there is no matrix, p is the percentage of the squared that are blocked
+#'
+#' @return a matrix object, inherited from the matrix class, attr n and p
+#' @export
+#'
+#' @examples
+board <- function(mat = NULL, n = 5, p = 0.25){
+  if(is.null(mat)){
+    mat <- generate_board_mat(n, p)
+  } else {
+    is_valid(mat)
+    n <- ncol(mat)
+    p <- sum(mat == 0) / n^2
+  }
+  object <- mat
+  attr(object, "n") <- n
+  attr(object, "p") <- p
+  class(object) <- c("matrix", "board")
+  object
+}
