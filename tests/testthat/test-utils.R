@@ -46,3 +46,21 @@ test_that("generate is valid error, not contains 0, 1, 2", {
                   2, 0, 3), ncol = 3)
   expect_error(is_valid(mat))
 })
+
+
+
+
+test_that("read boards, identical", {
+  load(url("https://raw.githubusercontent.com/benjaminleroy/36-350-summer-data/master/Week5/percolate_test.Rdata"))
+  boards <- read_boards("https://raw.githubusercontent.com/benjaminleroy/36-350-summer-data/master/Week5/percolation_write_test.txt")
+  expect_true(identical(boards, board_list))
+})
+
+test_that("read lines, test na list", {
+  expect_true(is.na(read_boards("https://raw.githubusercontent.com/benjaminleroy/36-350-summer-data/master/Week5/percolation_write_test1.txt")))
+  expect_true(is.na(read_boards("https://raw.githubusercontent.com/benjaminleroy/36-350-summer-data/master/Week5/percolation_write_test2.txt")))
+  expect_true(is.na(read_boards("https://raw.githubusercontent.com/benjaminleroy/36-350-summer-data/master/Week5/percolation_write_test3.txt")))
+  expect_true(is.na(read_boards("https://raw.githubusercontent.com/benjaminleroy/36-350-summer-data/master/Week5/percolation_write_test4.txt")))
+  expect_true(is.na(read_boards("https://raw.githubusercontent.com/benjaminleroy/36-350-summer-data/master/Week5/percolation_write_test5.txt")))
+  expect_true(is.na(read_boards("https://raw.githubusercontent.com/benjaminleroy/36-350-summer-data/master/Week5/percolation_write_test6.txt")))
+})

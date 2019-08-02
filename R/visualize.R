@@ -25,7 +25,7 @@ plot.board <- function(board, grid = TRUE){
                                  "1" = "white",
                                  "2" = "lightblue3")) +
     labs(title = paste("Board size: ", n)) +
-    coord_flip(xlim = NULL, ylim = NULL, expand = TRUE,
-               clip = "off")
+    coord_flip() +
+    scale_x_reverse()
   return(graph)
 }

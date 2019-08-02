@@ -3,7 +3,7 @@ test_that("board input mat, return same structure, n, p", {
                         0, 1, 0,
                         1, 0, 0), ncol = 3)
   my_board <- board(my_matrix)
-  expect_equivalent(my_board, my_matrix)
+  expect_equivalent(unclass(my_board), my_matrix)
   expect_true(attr(my_board, "n") == 3)
   expect_true(attr(my_board, "p") == 2/3)
 })

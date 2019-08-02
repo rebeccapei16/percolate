@@ -15,6 +15,3 @@ TRUE of throw an error
 \description{
 is_valid
 }
-\examples{
-is_valid(my_matrix)
-}
