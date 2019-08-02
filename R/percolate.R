@@ -43,6 +43,15 @@ fill <- function(board, filled){
   return(result_board)
 }
 
+#' percolate
+#'
+#' @param x
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 percolate <- function(x,...){ UseMethod("percolate") }
 
 
@@ -57,7 +66,7 @@ percolate <- function(x,...){ UseMethod("percolate") }
 percolate.board <- function(board){
   b <- board
   n <- attr(b, "n")
-  assert_that(all(board %in% c(0, 1)))
+  asserthat::assert_that(all(board %in% c(0, 1)))
   new_b <- b
   new_b[1,] <- ifelse(new_b[1,] == 1, 2, new_b[1,])
   changed <- ifelse(all.equal(new_b, b) == T, F, T)
