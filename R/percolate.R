@@ -45,13 +45,11 @@ fill <- function(board, filled){
 
 #' percolate
 #'
-#' @param x
-#' @param ...
+#' @param x object to percolate
+#' @param ... additional parameters
 #'
-#' @return
+#' @return output
 #' @export
-#'
-#' @examples
 percolate <- function(x,...){ UseMethod("percolate") }
 
 
@@ -62,8 +60,6 @@ percolate <- function(x,...){ UseMethod("percolate") }
 #' @return a list, result_board is the percolated board, result is True if last row is filled
 #'
 #' @export
-#'
-#' @examples
 percolate.board <- function(board){
   b <- board
   n <- attr(b, "n")

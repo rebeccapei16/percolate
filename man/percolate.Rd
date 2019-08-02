@@ -7,7 +7,12 @@
 percolate(x, ...)
 }
 \arguments{
-\item{...}{}
+\item{x}{object to percolate}
+
+\item{...}{additional parameters}
+}
+\value{
+output
 }
 \description{
 percolate
