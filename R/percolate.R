@@ -60,13 +60,14 @@ percolate <- function(x,...){ UseMethod("percolate") }
 #' @param board a board object
 #'
 #' @return a list, result_board is the percolated board, result is True if last row is filled
+#'
 #' @export
 #'
 #' @examples
 percolate.board <- function(board){
   b <- board
   n <- attr(b, "n")
-  asserthat::assert_that(all(board %in% c(0, 1)))
+  assertthat::assert_that(all(board %in% c(0, 1)))
   new_b <- b
   new_b[1,] <- ifelse(new_b[1,] == 1, 2, new_b[1,])
   changed <- ifelse(all.equal(new_b, b) == T, F, T)
